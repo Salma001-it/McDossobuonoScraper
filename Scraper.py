@@ -1,11 +1,12 @@
-import google_colab_selenium as webdriver
-from selenium.webdriver.common.by import By
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import pandas as pd
 import csv
+
 options = Options()
 options.add_argument("--headless")
 driver = webdriver.Chrome(options=options)
