@@ -1,0 +1,43 @@
+name: Scraping quotidiano
+
+# Esegue ogni giorno alle 09:00 UTC 
+on:
+  schedule:
+    - cron: '0 9 * * *'
+  workflow_dispatch: # permette anche esecuzione manuale
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # Installa Chromium e ChromeDriver
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+
+      - name: Run scraping script
+        env:
+          GOOGLE_CHROME_BIN: /usr/bin/chromium-browser
+          CHROMEDRIVER_BIN: /usr/bin/chromedriver
+        run: |
+          python Scraper.py
+
+      - name: Commit CSV aggiornato
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add Dossobuono.csv
+          git commit -m "Aggiorna CSV" || echo "No changes to commit"
+          git push
