@@ -6,10 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import pandas as pd
 import csv
-options.binary_location = "/usr/bin/chromium-browser"
-
 
 options = Options()
+options.binary_location = "/usr/bin/chromium-browser"
 options.add_argument("--headless")
 driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=options)
 from datetime import date
