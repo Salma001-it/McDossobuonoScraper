@@ -17,7 +17,7 @@ oggi = date.today()
 import os
 link = "https://www.google.it/maps/place/McDonald's+Dossobuono/@45.389607,10.9007287,17z/data=!4m6!3m5!1s0x4781e089d18461af:0x1eed8b83b934aa4c!8m2!3d45.389607!4d10.9033036!16s%2Fg%2F11cs39j4gr?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D"
 driver.get(link)
-write_header = not os.path.exists("/content/drive/MyDrive/Colab Notebooks/Dossobuono.csv") or os.path.getsize("/content/drive/MyDrive/Colab Notebooks/Dossobuono.csv") == 0
+write_header = not os.path.exists("Dossobuono.csv") or os.path.getsize("Dossobuono.csv") == 0
 try:
     # Accetta i cookie, se il pulsante è presente
     bottone_accetta = WebDriverWait(driver, 30).until(
