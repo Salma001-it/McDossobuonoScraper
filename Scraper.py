@@ -30,7 +30,7 @@ except Exception:
 try:
   
     # --- Estrazione del testo dinamico di affollamento ---
-    affollamento_element = WebDriverWait(driver, 10).until(
+    affollamento_element = WebDriverWait(driver, 30).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "div.UgBNB.fontBodySmall"))
     )
 
